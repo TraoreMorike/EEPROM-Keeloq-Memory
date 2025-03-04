@@ -484,6 +484,27 @@ int ATEEPROM::isSerialAuthorized(uint32_t serial) {
 }
 
 /**
+ * Gets the next available remote base address.
+ * 
+ * @return The next available remote base address, or -1 if no remote base address is available.
+ */
+int ATEEPROM::getNextAvailableRemote(void) {
+    int remote_base_addr = -1;
+    uint32_t serial_msb, serial_lsb;
+    
+    for (int i = 0; i < MAX_REMOTE; i++) {
+        readSerial(_REMOTE_BASE_ADDR_LIST[i], &serial_msb, &serial_lsb);
+        if (serial_msb == 0 && serial_lsb == 0) {
+            remote_base_addr = _REMOTE_BASE_ADDR_LIST[i];
+            break;
+        }
+    }
+
+    return remote_base_addr;
+}
+
+
+/**
  * Reads the seed value from the EEPROM memory.
  * 
  * @param remote_base_addr The base address of the remote device.

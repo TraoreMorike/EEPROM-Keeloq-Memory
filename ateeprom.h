@@ -58,9 +58,16 @@ _____________________________
 .............................
 */ 
 
+#define MAX_REMOTE              7
+
 #define REMOTE_0_BASE_ADDR      0x00
 #define REMOTE_1_BASE_ADDR      0x0A
 #define REMOTE_2_BASE_ADDR      0x14
+#define REMOTE_3_BASE_ADDR      0x1E
+#define REMOTE_4_BASE_ADDR      0x28
+#define REMOTE_5_BASE_ADDR      0x32
+#define REMOTE_6_BASE_ADDR      0x3C
+
 
 #define KEY_0_ADDR(remote_base_addr)        ((remote_base_addr) + (0x00))
 #define KEY_1_ADDR(remote_base_addr)        ((remote_base_addr) + (0x01))
@@ -93,6 +100,7 @@ class ATEEPROM {
         void eraseSerial(uint8_t remote_base_addr);
 
         int isSerialAuthorized(uint32_t serial);
+        int getNextAvailableRemote(void);
 
         void readSeed(uint8_t remote_base_addr, uint32_t* seed_msb, uint32_t* seed_lsb);
         void writeSeed(uint8_t remote_base_addr, uint16_t seed_msb, uint16_t seed_lsb);
@@ -105,6 +113,7 @@ class ATEEPROM {
         
 
     private:
+        // Low level functions for AT936 EEPROM
         void enableEEPROMWrite();
         void EEPROMDisableWrite();
         void EEPROMWriteSlot(uint8_t address, uint16_t data);
