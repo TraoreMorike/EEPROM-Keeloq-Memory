@@ -1,7 +1,7 @@
-# AT93C46D as a Keeloq memory Library
+# AT93C46D as a KEELOQ® memory Library
 
 The ATEEPROM library provides an interface to interact with the AT93C46D EEPROM chip using an Arduino. 
-Custom functions has been implemented to easily manage Keeloq based keyfob such as the HCS301.  
+Custom functions has been implemented to easily manage KEELOQ® based keyfob such as the HCS301.  
 
 ## Features
 
@@ -127,6 +127,9 @@ eeprom.eraseSeed(remote_base_addr);
 ```cpp
 eeprom.eraseRemote(remote_base_addr);
 ```
+## Disclaimer
+
+KEELOQ® is a trademark or registered trademark of Microchip Technology Inc.
 
 ## License
 
